@@ -1,9 +1,5 @@
 import questions_container
-
-
 def handle_answer(answer,question_id):
-    # if question_id > 0:
-    #     question_id -= 1
     possible_answers = questions_container.answers[question_id]
     print("possible answers:", possible_answers)
 
@@ -21,7 +17,7 @@ def handle_answer(answer,question_id):
 
         elif question_id == 2:
             if answer == possible_answers[1]:
-                return "хавхваваавххавх лох|true"
+                return "хавхваваавххавх лох|1"
             else:
                 return ""
 
@@ -33,10 +29,12 @@ def handle_answer(answer,question_id):
 
         elif question_id == 4:
             if answer == possible_answers[1]:
-                return "|true"
+                return "|1"
             else:
                 return ""
-        elif question_id == 6:
+        elif question_id == 5:
+            return "|1";
+        elif question_id == 7:
             if answer == possible_answers[0]:
                 return "🥰"
             else:
@@ -47,6 +45,12 @@ def handle_answer(answer,question_id):
                 return "Респект"
             else:
                 return "Позорище🤮"
+
+        elif question_id == 9:
+            if answer == possible_answers[2]:
+                return "<a href='https://youtu.be/CzBP3i_7KYg'>узнать</a>"
+            else:
+                return ""
 
         else:
             return "";
