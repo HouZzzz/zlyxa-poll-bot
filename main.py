@@ -49,7 +49,7 @@ def answers(callback):
 	else:
 		usersAndSteps.update({callback.message.chat.id : usersAndSteps[callback.message.chat.id] + 1})
 
-	if (usersAndSteps[callback.message.chat.id] != len(questions)):
+	if (usersAndSteps[callback.message.chat.id] != len(questions) - 1):
 		replies = telebot.types.InlineKeyboardMarkup(row_width=3)
 		for i in questions_container.answers[usersAndSteps[callback.message.chat.id]]:
 			replies.add(telebot.types.InlineKeyboardButton(i.lower(), callback_data=i))
