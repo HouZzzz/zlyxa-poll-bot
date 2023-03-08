@@ -27,20 +27,20 @@ def handle_answer(answer,question_id):
             else:
                 return ""
 
-        elif question_id == 4:
+        elif question_id == 5:
             if answer == possible_answers[1]:
                 return "|1"
             else:
                 return ""
-        elif question_id == 5:
+        elif question_id == 6:
             return "|1";
-        elif question_id == 7:
+        elif question_id == 8:
             if answer == possible_answers[0]:
                 return "🥰"
             else:
                 return "<a href='https://www.youtube.com/@zlyxa/featured'>жду тебя мой пупсик</a>"
 
-        elif question_id == 8:
+        elif question_id == 9:
             if answer == possible_answers[0]:
                 return "Респект"
             else:
