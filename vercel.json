@@ -2,8 +2,8 @@
   "functions": {
     "api/*": {
       "runtime": "python-3.11.0",
-      "memory": 128,
-      "entryPoint": "main"
+      "memory": 128
     }
-  }
+  },
+  "entryPoint": "main"
 }
