@@ -1,7 +1,7 @@
 {
   "functions": {
     "*": {
-      "runtime": "python",
+      "runtime": "python 3.11",
       "memory": 128
     }
   }
