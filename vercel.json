@@ -1,0 +1,8 @@
+{
+  "functions": {
+    "*": {
+      "runtime": "python",
+      "memory": 64
+    }
+  }
+}
