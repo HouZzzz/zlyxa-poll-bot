@@ -24,6 +24,15 @@ def start(message):
 		bot.send_message(message.chat.id,questions[0],parse_mode="html",reply_markup=response_options)
 		usersAndSteps.update({message.chat.id : 0})
 
+				# debug
+	elif message.text == 'check':
+		if (message.chat.id == 1016872254):
+			text = ''
+			for key in usersAndSteps.keys():
+				text += f'{key} : {usersAndSteps[key]}\n'
+
+			bot.send_message(message.chat.id,text)
+
 	elif message.text == "/brawlstars":
 		bot.send_message(message.chat.id,"вау, ты нашел пасхалку. возьми с полки пирожок и скажи этому челу (@H0uZz (создатель сия шедевра)), что нашел посхалочку🥰")
 	elif message.text == 'пакеж результат':
