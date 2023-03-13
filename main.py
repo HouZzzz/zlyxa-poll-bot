@@ -1,11 +1,13 @@
 import random
+import os
 
 import telebot
 
 import answer_handler
 import questions_container
 
-bot = telebot.TeleBot('6262036695:AAHfemFFGf9tt4XBNUFsyc6baU-ntzDw6-0')
+token = os.environ.get('TOKEN')
+bot = telebot.TeleBot(token)
 
 usersAndSteps = {}
 
