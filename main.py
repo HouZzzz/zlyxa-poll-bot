@@ -41,28 +41,31 @@ def start(message):
 @bot.callback_query_handler(func=lambda call: True)
 def answers(callback):
 	print("handling callback with data: " + callback.data)
+	
+	if (callback.message.chat.id in usersAndSteps.keys()):
+		emotion = answer_handler.handle_answer(callback.data,usersAndSteps[callback.message.chat.id])
 
-	emotion = answer_handler.handle_answer(callback.data,usersAndSteps[callback.message.chat.id])
+		if emotion.split("|")[0] != "":
+			bot.send_message(callback.message.chat.id, emotion.split("|")[0],parse_mode="html")
 
-	if emotion.split("|")[0] != "":
-		bot.send_message(callback.message.chat.id, emotion.split("|")[0],parse_mode="html")
+		# skip question
+		if ("|" in emotion):
+			usersAndSteps.update({callback.message.chat.id : usersAndSteps[callback.message.chat.id] + (int(emotion.split("|")[1]) + 1)})
+		else:
+			usersAndSteps.update({callback.message.chat.id : usersAndSteps[callback.message.chat.id] + 1})
 
-	# skip question
-	if ("|" in emotion):
-		usersAndSteps.update({callback.message.chat.id : usersAndSteps[callback.message.chat.id] + (int(emotion.split("|")[1]) + 1)})
+		if (usersAndSteps[callback.message.chat.id] != len(questions) - 1):
+			replies = telebot.types.InlineKeyboardMarkup(row_width=3)
+			for i in questions_container.answers[usersAndSteps[callback.message.chat.id]]:
+				replies.add(telebot.types.InlineKeyboardButton(i.lower(), callback_data=i))
+		else:
+			replies = telebot.types.ReplyKeyboardMarkup(row_width=2)
+			btn1 = telebot.types.KeyboardButton('пакеж результат')
+			replies.add(btn1)
+
+		bot.send_message(callback.message.chat.id,questions[usersAndSteps[callback.message.chat.id]],parse_mode="html",reply_markup=replies)
 	else:
-		usersAndSteps.update({callback.message.chat.id : usersAndSteps[callback.message.chat.id] + 1})
-
-	if (usersAndSteps[callback.message.chat.id] != len(questions) - 1):
-		replies = telebot.types.InlineKeyboardMarkup(row_width=3)
-		for i in questions_container.answers[usersAndSteps[callback.message.chat.id]]:
-			replies.add(telebot.types.InlineKeyboardButton(i.lower(), callback_data=i))
-	else:
-		replies = telebot.types.ReplyKeyboardMarkup(row_width=2)
-		btn1 = telebot.types.KeyboardButton('пакеж результат')
-		replies.add(btn1)
-
-	bot.send_message(callback.message.chat.id,questions[usersAndSteps[callback.message.chat.id]],parse_mode="html",reply_markup=replies)
+		bot.send_message(callback.message.chat.id,"Тебя нету в списке людей, которые проходят опрос")
 
 # start bot
 bot.polling(none_stop=True)
