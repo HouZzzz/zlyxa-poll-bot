@@ -1,8 +1,16 @@
 {
-  "functions": {
-    "api/*": {
-      "runtime": "python-3.11.0",
-      "memory": 128
+  "version": 1,
+  "name": "zlyxa-poll-bot",
+  "builds": [
+    {
+      "src": "main.py",
+      "use": "@vercel/python"
     }
-  }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "main.py"
+    }
+  ]
 }
