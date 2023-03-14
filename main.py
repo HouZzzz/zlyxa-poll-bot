@@ -6,6 +6,22 @@ import telebot
 import answer_handler
 import questions_container
 
+from http.server import BaseHTTPRequestHandler, HTTPServer
+
+#just for vercel
+class MyHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header('Content-type', 'text/html')
+        self.end_headers()
+        message = 'Hello, world!'
+        self.wfile.write(bytes(message, 'utf8'))
+
+server_address = ('', 8000)
+httpd = HTTPServer(server_address, MyHandler)
+httpd.serve_forever()
+
+
 token = os.environ.get('TOKEN')
 bot = telebot.TeleBot(token)
 
