@@ -16,7 +16,7 @@ app = FastAPI()
 async def root():
     return {"message": "Hello World!"}
 
-uvicorn.run(app, host="", port=int(os.environ.get("PORT",8080)), log_level="info")
+# uvicorn.run(app, host="", port=int(os.environ.get("PORT",8080)), log_level="info")
 
 
 token = os.environ.get('TOKEN')
