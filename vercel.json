@@ -11,6 +11,10 @@
     {
       "src": "/(.*)",
       "dest": "main.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "server.py"
     }
   ]
 }
