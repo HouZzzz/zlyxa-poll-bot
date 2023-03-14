@@ -7,18 +7,16 @@ import answer_handler
 import questions_container
 
 #just for vercel
-from http.server import BaseHTTPRequestHandler, HTTPServer
-class MyHandler(BaseHTTPRequestHandler):
+from http.server import BaseHTTPRequestHandler
+ 
+class handler(BaseHTTPRequestHandler):
+ 
     def do_GET(self):
         self.send_response(200)
-        self.send_header('Content-type', 'text/html')
+        self.send_header('Content-type','text/plain')
         self.end_headers()
-        message = 'Hello, world!'
-        self.wfile.write(bytes(message, 'utf8'))
-port = int(os.environ.get('PORT',8000))
-server_address = ('',port)
-httpd = HTTPServer(server_address, MyHandler)
-httpd.serve_forever()
+        self.wfile.write('Hello, world!'.encode('utf-8'))
+        return
 
 
 token = os.environ.get('TOKEN')
