@@ -17,8 +17,8 @@ class MyHandler(BaseHTTPRequestHandler):
         message = 'Hello, world!'
         self.wfile.write(bytes(message, 'utf8'))
         
-
-server = HTTPServer(('0.0.0.0', 8000), MyHandler)
+port = int(os.environ.get('PORT', 8000))
+server = HTTPServer(('0.0.0.0', port), MyHandler)
 httpd.serve_forever()
 
 
