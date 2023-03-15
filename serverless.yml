@@ -1,1 +1,13 @@
-
+service: bot
+provider:
+  name: houzz
+  runtime: python3.11
+functions:
+  telegram:
+    handler: main
+    events:
+      - http:
+          path: /
+          method: post
+plugins:
+  - serverless-python-requirements
