@@ -1,13 +1,13 @@
+org: houzz
+app: zlyxa-poll-bot
 service: bot
+
+frameworkVersion: '3'
+
 provider:
-  name: houzz
-  runtime: python3.11
+  name: aws
+  runtime: python3.8
+
 functions:
-  telegram:
+  hello:
     handler: main
-    events:
-      - http:
-          path: /
-          method: post
-plugins:
-  - serverless-python-requirements
